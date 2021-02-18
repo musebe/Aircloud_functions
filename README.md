@@ -36,4 +36,4 @@ AIRTABLE_TABLE_NAME=xxxxxxxx
 
 - Eugene Musebe
 
-## License
+## License MIT

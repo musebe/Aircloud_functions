@@ -19,12 +19,14 @@ exports.handler = async (event,context,callback) => {
       statusCode: 500,
       body: JSON.stringify({ err: 'Failed to upload image' }),
     };
+
+    callback(null, {
+      headers: {
+        'Access-Control-Allow-Origin': 'http://localhost:8888',
+      },
+      statusCode: 200,
+      body: output,
+    });
   }
-  callback(null, {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-    statusCode: 200,
-    body: output,
-  });
+  
 };

@@ -1,7 +1,12 @@
 require('dotenv').config();
 const { table } = require('./utils/airtable');
 
-exports.handler = async (event,context) => {
+const headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+};
+exports.handler = async (event) => {
   try {
     const records = await table.select({}).firstPage();
     const formattedRecords = records
@@ -12,6 +17,7 @@ exports.handler = async (event,context) => {
       .filter((record) => !!record.imgId);
     return {
       statusCode: 200,
+      headers,
       body: JSON.stringify(formattedRecords),
     };
   } catch (err) {
@@ -20,5 +26,4 @@ exports.handler = async (event,context) => {
       body: JSON.stringify({ err: 'Failed to upload image' }),
     };
   }
-  
 };

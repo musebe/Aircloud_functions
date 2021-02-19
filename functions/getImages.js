@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { table } = require('./utils/airtable');
 
-exports.handler = async (event,context,callback) => {
+exports.handler = async (event,context) => {
   try {
     const records = await table.select({}).firstPage();
     const formattedRecords = records
@@ -19,14 +19,6 @@ exports.handler = async (event,context,callback) => {
       statusCode: 500,
       body: JSON.stringify({ err: 'Failed to upload image' }),
     };
-
-    callback(null, {
-      headers: {
-        'Access-Control-Allow-Origin': 'http://localhost:8888',
-      },
-      statusCode: 200,
-      body: output,
-    });
   }
   
 };

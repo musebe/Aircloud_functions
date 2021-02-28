@@ -6,6 +6,7 @@ const headers = {
   'Access-Control-Allow-Headers': 'Content-Type',
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
 };
+
 exports.handler = async (event) => {
   try {
     const records = await table.select({}).firstPage();

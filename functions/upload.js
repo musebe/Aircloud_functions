@@ -23,12 +23,10 @@ exports.handler = async (event) => {
     });
 
     console.log(public_id, secure_url);
-
     const record = await table.create({
       imgId: public_id,
       url: secure_url,
       username: 'musebecodes_aircloud',
-      likes: 0,
     });
     return {
       statusCode: 200,
